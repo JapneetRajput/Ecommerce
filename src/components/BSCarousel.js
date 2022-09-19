@@ -1,5 +1,4 @@
 import React from "react";
-import fourth from "../images/fourth.png";
 import img_first from "../images/img_first.png";
 import img_third from "../images/img_third.png";
 import img_second from "../images/img_second.png";
