@@ -9,12 +9,15 @@ export const Navbar = (props) => {
 
   return (
     <nav
-      className="navbar navbar-light navbar-expand-lg"
+      className="navbar navbar-light navbar-expand-lg py-3 h4"
       style={{ backgroundColor: "black" }}
     >
       <Link className="navbar-brand  font-weight-bolder mx-5" to="./">
         {/* <img src={Logo} alt="Logo" width="135" height="42" className="vertical-align-middle" /> */}
-        <a className={`${styles.navlink} nav-link `} style={{ color: "white" }}>
+        <a
+          className={`${styles.navlink} nav-link `}
+          style={{ color: "white", fontSize: "1.7rem" }}
+        >
           Portronics
         </a>
       </Link>
