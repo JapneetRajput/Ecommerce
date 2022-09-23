@@ -1,50 +1,123 @@
-export const Product = () => {
-  return <div>Products</div>;
-};
+// need to write dynamic logic and logic for img
+// instead of <a> need to write logic to dynamic route to individual product page by passing id parameter
+// need to develope components for card
+import styles from "./css/product.module.css";
+import Footer from "../components/Footer";
 
-{
-  /* <div
-      id="carouselExampleIndicators"
-      class="carousel slide"
-      data-ride="carousel"
-    >
-      <ol class="carousel-indicators">
-        <li
-          data-target="#carouselExampleIndicators"
-          data-slide-to="0"
-          class="active"
-        ></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-        <li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-      </ol>
-      <div class="carousel-inner">
-        <div class="carousel-item active">
-          <img class="d-block w-100" src={first} alt="First slide" />
+export const Product = () => {
+  return (
+    <div>
+      <section className={styles.section_products}>
+        <div className="container">
+          <div className="row justify-content-center text-center">
+            <div className="col-md-8 col-lg-6">
+              <div className="header">
+                <h2>Products</h2>
+                <hr />
+              </div>
+            </div>
+          </div>
+          <div className="row">
+            {/* <!-- Single Product --> */}
+            <div className="col-md-6 col-lg-4 col-xl-3">
+              <div id={styles.product_1} className={styles.single_product}>
+                <a href="www.google.com" className={styles.link}>
+                  <div className={styles.part_1}></div>
+                  <div className={styles.part_2}>
+                    <h3 className={styles.product_title}>Here Product Title</h3>
+                    <h4 className={styles.product_price}>$49.99</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+            {/* <!-- Single Product --> */}
+            <div className="col-md-6 col-lg-4 col-xl-3">
+              <div id={styles.product_2} className={styles.single_product}>
+                <a href="www.google.com" className={styles.link}>
+                  <div className={styles.part_1}></div>
+                  <div className={styles.part_2}>
+                    <h3 className={styles.product_title}>Here Product Title</h3>
+                    <h4 className={styles.product_price}>$49.99</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+            {/* <!-- Single Product --> */}
+            <div className="col-md-6 col-lg-4 col-xl-3">
+              <div id={styles.product_3} className={styles.single_product}>
+                <a href="www.google.com" className={styles.link}>
+                  <div className={styles.part_1}></div>
+                  <div className={styles.part_2}>
+                    <h3 className={styles.product_title}>Here Product Title</h3>
+                    <h4 className={styles.product_price}>$49.99</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+            {/* <!-- Single Product --> */}
+            <div className="col-md-6 col-lg-4 col-xl-3">
+              <div id={styles.product_4} className={styles.single_product}>
+                <a href="www.google.com" className={styles.link}>
+                  <div className={styles.part_1}></div>
+                  <div className={styles.part_2}>
+                    <h3 className={styles.product_title}>Here Product Title</h3>
+                    <h4 className={styles.product_price}>$49.99</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+            {/* <!-- Single Product --> */}
+            <div className="col-md-6 col-lg-4 col-xl-3">
+              <div id={styles.product_1} className={styles.single_product}>
+                <a href="www.google.com" className={styles.link}>
+                  <div className={styles.part_1}></div>
+                  <div className={styles.part_2}>
+                    <h3 className={styles.product_title}>Here Product Title</h3>
+                    <h4 className={styles.product_price}>$49.99</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+            {/* <!-- Single Product --> */}
+            <div className="col-md-6 col-lg-4 col-xl-3">
+              <div id={styles.product_2} className={styles.single_product}>
+                <a href="www.google.com" className={styles.link}>
+                  <div className={styles.part_1}></div>
+                  <div className={styles.part_2}>
+                    <h3 className={styles.product_title}>Here Product Title</h3>
+                    <h4 className={styles.product_price}>$49.99</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+            {/* <!-- Single Product --> */}
+            <div className="col-md-6 col-lg-4 col-xl-3">
+              <div id={styles.product_3} className={styles.single_product}>
+                <a href="www.google.com" className={styles.link}>
+                  <div className={styles.part_1}></div>
+                  <div className={styles.part_2}>
+                    <h3 className={styles.product_title}>Here Product Title</h3>
+                    <h4 className={styles.product_price}>$49.99</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+            {/* <!-- Single Product --> */}
+            <div className="col-md-6 col-lg-4 col-xl-3">
+              <div id={styles.product_4} className={styles.single_product}>
+                <a href="www.google.com" className={styles.link}>
+                  <div className={styles.part_1}></div>
+                  <div className={styles.part_2}>
+                    <h3 className={styles.product_title}>Here Product Title</h3>
+                    <h4 className={styles.product_price}>$49.99</h4>
+                  </div>
+                </a>
+              </div>
+            </div>
+          </div>
         </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src={second} alt="Second slide" />
-        </div>
-        <div class="carousel-item">
-          <img class="d-block w-100" src={third} alt="Third slide" />
-        </div>
-      </div>
-      <a
-        class="carousel-control-prev"
-        href="#carouselExampleIndicators"
-        role="button"
-        data-slide="prev"
-      >
-        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
-        <span class="sr-only">Previous</span>
-      </a>
-      <a
-        class="carousel-control-next"
-        href="#carouselExampleIndicators"
-        role="button"
-        data-slide="next"
-      >
-        <span class="carousel-control-next-icon" aria-hidden="true"></span>
-        <span class="sr-only">Next</span>
-      </a>
-    </div> */
-}
+      </section>
+      <Footer />
+    </div>
+  );
+};
