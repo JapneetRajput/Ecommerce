@@ -21,7 +21,7 @@ export const Product = () => {
             {/* <!-- Single Product --> */}
             <div className="col-md-6 col-lg-4 col-xl-3">
               <div id={styles.product_1} className={styles.single_product}>
-                <a href="www.google.com" className={styles.link}>
+                <a href="individualprod" className={styles.link}>
                   <div className={styles.part_1}></div>
                   <div className={styles.part_2}>
                     <h3 className={styles.product_title}>Here Product Title</h3>
@@ -33,7 +33,7 @@ export const Product = () => {
             {/* <!-- Single Product --> */}
             <div className="col-md-6 col-lg-4 col-xl-3">
               <div id={styles.product_2} className={styles.single_product}>
-                <a href="www.google.com" className={styles.link}>
+                <a href="individualprod" className={styles.link}>
                   <div className={styles.part_1}></div>
                   <div className={styles.part_2}>
                     <h3 className={styles.product_title}>Here Product Title</h3>
@@ -45,7 +45,7 @@ export const Product = () => {
             {/* <!-- Single Product --> */}
             <div className="col-md-6 col-lg-4 col-xl-3">
               <div id={styles.product_3} className={styles.single_product}>
-                <a href="www.google.com" className={styles.link}>
+                <a href="individualprod" className={styles.link}>
                   <div className={styles.part_1}></div>
                   <div className={styles.part_2}>
                     <h3 className={styles.product_title}>Here Product Title</h3>
@@ -57,7 +57,7 @@ export const Product = () => {
             {/* <!-- Single Product --> */}
             <div className="col-md-6 col-lg-4 col-xl-3">
               <div id={styles.product_4} className={styles.single_product}>
-                <a href="www.google.com" className={styles.link}>
+                <a href="individualprod" className={styles.link}>
                   <div className={styles.part_1}></div>
                   <div className={styles.part_2}>
                     <h3 className={styles.product_title}>Here Product Title</h3>
@@ -69,7 +69,7 @@ export const Product = () => {
             {/* <!-- Single Product --> */}
             <div className="col-md-6 col-lg-4 col-xl-3">
               <div id={styles.product_1} className={styles.single_product}>
-                <a href="www.google.com" className={styles.link}>
+                <a href="individualprod" className={styles.link}>
                   <div className={styles.part_1}></div>
                   <div className={styles.part_2}>
                     <h3 className={styles.product_title}>Here Product Title</h3>
@@ -81,7 +81,7 @@ export const Product = () => {
             {/* <!-- Single Product --> */}
             <div className="col-md-6 col-lg-4 col-xl-3">
               <div id={styles.product_2} className={styles.single_product}>
-                <a href="www.google.com" className={styles.link}>
+                <a href="individualprod" className={styles.link}>
                   <div className={styles.part_1}></div>
                   <div className={styles.part_2}>
                     <h3 className={styles.product_title}>Here Product Title</h3>
@@ -93,7 +93,7 @@ export const Product = () => {
             {/* <!-- Single Product --> */}
             <div className="col-md-6 col-lg-4 col-xl-3">
               <div id={styles.product_3} className={styles.single_product}>
-                <a href="www.google.com" className={styles.link}>
+                <a href="individualprod" className={styles.link}>
                   <div className={styles.part_1}></div>
                   <div className={styles.part_2}>
                     <h3 className={styles.product_title}>Here Product Title</h3>
@@ -105,7 +105,7 @@ export const Product = () => {
             {/* <!-- Single Product --> */}
             <div className="col-md-6 col-lg-4 col-xl-3">
               <div id={styles.product_4} className={styles.single_product}>
-                <a href="www.google.com" className={styles.link}>
+                <a href="individualprod" className={styles.link}>
                   <div className={styles.part_1}></div>
                   <div className={styles.part_2}>
                     <h3 className={styles.product_title}>Here Product Title</h3>
