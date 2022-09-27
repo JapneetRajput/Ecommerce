@@ -43,31 +43,24 @@ export const Navbar = (props) => {
       >
         <Link
           className={`${styles.navlink} nav-link mx-5`}
-          to="./"
+          to="/"
           style={{ color: "white" }}
         >
           Home
         </Link>
         <Link
           className={`${styles.navlink} nav-link mx-5`}
-          to="./product"
+          to="/product"
           style={{ color: "white" }}
         >
           Products
         </Link>
         <Link
           className={`${styles.navlink} nav-link mx-5`}
-          to="./cart"
+          to="/cart"
           style={{ color: "white" }}
         >
           Cart
-        </Link>
-        <Link
-          className={`${styles.navlink} nav-link mx-5`}
-          to="./login"
-          style={{ color: "white" }}
-        >
-          Login
         </Link>
       </div>
     </nav>
