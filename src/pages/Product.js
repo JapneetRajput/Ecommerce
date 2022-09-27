@@ -1,5 +1,9 @@
+
+
 export const Product = () => {
-  return <div>Products</div>;
+  return <div>
+    Product
+  </div>;
 };
 
 {
