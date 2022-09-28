@@ -2,7 +2,7 @@ import React from 'react'
 import {ListGroup,Button} from 'react-bootstrap';
 // import Image from '../images/img_first.png';
 
-function ProductRow({productName,productID,handleShow}) {
+function ProductRow({productName,productPrice,handleShow}) {
   const handleDelete = () => {
     
   }
@@ -13,7 +13,7 @@ function ProductRow({productName,productID,handleShow}) {
         <ListGroup.Item style={{flex:1}}>
           Product Name:{productName}
           <br></br>
-          Product ID:{productID}
+          Product Price:{productPrice}
         </ListGroup.Item>
         <ListGroup.Item>
           <Button variant="success" onClick={handleShow}>Edit</Button>

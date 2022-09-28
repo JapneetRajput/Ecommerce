@@ -2,6 +2,9 @@ import styles from "./css/home.module.css";
 import BSCarousel from "../components/BSCarousel";
 import Homecard from "../components/Homecard";
 import Footer from "../components/Footer";
+import Admin from "./Admin";
+import AdminPanel from "./AdminPanel";
+import AddProductForm from "../components/AddProductForm";
 
 export const Home = () => {
   return (
@@ -12,6 +15,8 @@ export const Home = () => {
         <Homecard />
       </div>
       <Footer />
+      <Admin />
+      <AdminPanel />
     </div>
   );
 };

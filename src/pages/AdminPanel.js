@@ -3,20 +3,39 @@ import {Container,Button,Form} from 'react-bootstrap';
 import AddProductForm from '../components/AddProductForm';
 import ComponentList from '../components/ProductRow';
 import EditProductForm from '../components/EditProductForm';
+import { db } from '../firebase';
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
 
 function AdminPanel() {
   const [showAdd, setShowAdd] = useState(false);
   const [showEdit, setShowEdit] = useState(false);
-  const [products,setProducts] = useState([]);
   const [searchTerm,setSearchTerm] = useState("");
 
 
   const handleCloseAdd = () => setShowAdd(false);
   const handleShowAdd = () => setShowAdd(true);
-
+  
   const handleCloseEdit = () => setShowEdit(false);
   const handleShowEdit = () => setShowEdit(true);
+
+  const [products,setProducts] = useState([]);
+  const collectionRef = collection(db, "Products");
+  useEffect(() => {
+    const getProducts = async () => {
+      const data = await getDocs(collectionRef);
+      setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+
+    getProducts();
+  }, []);
 
   return (
       <Container className="d-flex align-items-center pt-5          justify-content-start flex-column" style={{minHeight:"500px",maxWidth: "700px"}}>
@@ -29,10 +48,10 @@ function AdminPanel() {
           </Form.Group>
         <AddProductForm show={showAdd} handleClose={handleCloseAdd}></AddProductForm>
         <EditProductForm show={showEdit} handleClose={handleCloseEdit}></EditProductForm>
-        <ComponentList className="w-100" handleShow={handleShowEdit}></ComponentList>
-        <ComponentList className="w-100" handleShow={handleShowEdit}></ComponentList>
-        <ComponentList className="w-100" handleShow={handleShowEdit}></ComponentList>
-        <ComponentList className="w-100" handleShow={handleShowEdit}></ComponentList>
+        { products.map((product) => {
+            return <ComponentList className="w-100" handleShow={handleShowEdit} productName={product.productName} productPrice={product.productPrice}></ComponentList>
+        })}
+      
 
 
         {/* Search Functionality */}
