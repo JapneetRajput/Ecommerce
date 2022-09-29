@@ -1,4 +1,4 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useState} from 'react';
 import {Container,Button,Form} from 'react-bootstrap';
 import AddProductForm from '../components/AddProductForm';
 import ComponentList from '../components/ProductRow';
@@ -47,9 +47,13 @@ function AdminPanel() {
             <Form.Control type="text" required onChange={e=> setSearchTerm(e.target.value)} placeholder="Search for Product Name"></Form.Control>
           </Form.Group>
         <AddProductForm show={showAdd} handleClose={handleCloseAdd}></AddProductForm>
-        <EditProductForm show={showEdit} handleClose={handleCloseEdit}></EditProductForm>
         { products.map((product) => {
-            return <ComponentList className="w-100" handleShow={handleShowEdit} productName={product.productName} productPrice={product.productPrice}></ComponentList>
+            const userDoc = doc(db,"Products",product.id)
+            return( 
+              <>
+            <ComponentList className="w-100" handleShow={handleShowEdit} productName={product.productName} productPrice={product.productPrice} userDoc={userDoc} ></ComponentList>
+            <EditProductForm show={showEdit} handleClose={handleCloseEdit} userDoc={userDoc}></EditProductForm>
+            </>)
         })}
       
 

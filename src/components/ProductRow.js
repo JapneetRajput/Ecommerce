@@ -1,10 +1,18 @@
 import React from 'react'
 import {ListGroup,Button} from 'react-bootstrap';
 // import Image from '../images/img_first.png';
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
-function ProductRow({productName,productPrice,handleShow}) {
-  const handleDelete = () => {
-    
+function ProductRow({productName,productPrice,handleShow,userDoc}) {
+  const deleteUser = async () => {
+    await deleteDoc(userDoc);
   }
 
   return (
@@ -19,7 +27,7 @@ function ProductRow({productName,productPrice,handleShow}) {
           <Button variant="success" onClick={handleShow}>Edit</Button>
         </ListGroup.Item>
         <ListGroup.Item>
-          <Button variant="danger" onClick={handleDelete}>Delete</Button>
+          <Button variant="danger" onClick={deleteUser}>Delete</Button>
         </ListGroup.Item>
       </ListGroup>
   </>
