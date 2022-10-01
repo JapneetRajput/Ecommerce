@@ -16,15 +16,12 @@ import {
 
 function AdminPanel() {
   const [showAdd, setShowAdd] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
   const [searchTerm,setSearchTerm] = useState("");
 
 
   const handleCloseAdd = () => setShowAdd(false);
   const handleShowAdd = () => setShowAdd(true);
   
-  const handleCloseEdit = () => setShowEdit(false);
-  const handleShowEdit = () => setShowEdit(true);
 
   const [products,setProducts] = useState([]);
   const collectionRef = collection(db, "Products");
@@ -51,8 +48,7 @@ function AdminPanel() {
             const userDoc = doc(db,"Products",product.id)
             return( 
               <>
-            <ComponentList className="w-100" handleShow={handleShowEdit} productName={product.productName} productPrice={product.productPrice} userDoc={userDoc} ></ComponentList>
-            <EditProductForm show={showEdit} handleClose={handleCloseEdit} userDoc={userDoc}></EditProductForm>
+            <ComponentList className="w-100" productName={product.productName} productPrice={product.productPrice} productCat={product.productCategory} productDes={product.productDesc} userDoc={userDoc} ></ComponentList>
             </>)
         })}
       

@@ -1,12 +1,16 @@
-import React from 'react'
+import React,{useState} from 'react';
 import { Form, Button, Modal } from 'react-bootstrap';
+import {updateDoc} from "firebase/firestore";
 
-function EditProductForm({show,handleClose,userDoc}) {
-  const [name,setName] = useState("");
-  const [price,setPrice] = useState(0);
-  const [description,setDescription] = useState("");
-  const [category,setCategory] =useState("");
-  const updateProduct = () => {
+function EditProductForm({show,handleClose,productName,productPrice,productDes,productCat,userDoc}) {
+  
+  const [name,setName] = useState(productName);
+  const [price,setPrice] = useState(Number(productPrice));
+  const [description,setDescription] = useState(productDes);
+  const [category,setCategory] =useState(productCat);
+  const updateProduct = async() => {
+    const newFields = {productName: name, productPrice: price, productDesc: description, productCategory: category};
+    await updateDoc(userDoc,newFields)
   }
   return (
     // <div>

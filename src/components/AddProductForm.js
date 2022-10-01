@@ -47,7 +47,7 @@ function AddProductForm({show,handleClose}) {
           <Modal.Title className="text-align">Add Product</Modal.Title>
         </Modal.Header>
         <Modal.Body className="mx-2">
-          <Form >
+          <Form>
           <Form.Group className="mb-2" id="Name">
             <Form.Label >Name</Form.Label>
             <Form.Control type="text" name="Name" required onChange={e=> setName(e.target.value)}></Form.Control>
