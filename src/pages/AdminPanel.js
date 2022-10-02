@@ -1,22 +1,38 @@
-import React,{useEffect, useState} from 'react'
+import React,{useEffect, useState} from 'react';
 import {Container,Button,Form} from 'react-bootstrap';
 import AddProductForm from '../components/AddProductForm';
 import ComponentList from '../components/ProductRow';
 import EditProductForm from '../components/EditProductForm';
+import { db } from '../firebase';
+import {
+  collection,
+  getDocs,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+  doc,
+} from "firebase/firestore";
 
 
 function AdminPanel() {
   const [showAdd, setShowAdd] = useState(false);
-  const [showEdit, setShowEdit] = useState(false);
-  const [products,setProducts] = useState([]);
   const [searchTerm,setSearchTerm] = useState("");
 
 
   const handleCloseAdd = () => setShowAdd(false);
   const handleShowAdd = () => setShowAdd(true);
+  
 
-  const handleCloseEdit = () => setShowEdit(false);
-  const handleShowEdit = () => setShowEdit(true);
+  const [products,setProducts] = useState([]);
+  const collectionRef = collection(db, "Products");
+  useEffect(() => {
+    const getProducts = async () => {
+      const data = await getDocs(collectionRef);
+      setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    };
+
+    getProducts();
+  }, []);
 
   return (
       <Container className="d-flex align-items-center pt-5          justify-content-start flex-column" style={{minHeight:"500px",maxWidth: "700px"}}>
@@ -28,11 +44,14 @@ function AdminPanel() {
             <Form.Control type="text" required onChange={e=> setSearchTerm(e.target.value)} placeholder="Search for Product Name"></Form.Control>
           </Form.Group>
         <AddProductForm show={showAdd} handleClose={handleCloseAdd}></AddProductForm>
-        <EditProductForm show={showEdit} handleClose={handleCloseEdit}></EditProductForm>
-        <ComponentList className="w-100" handleShow={handleShowEdit}></ComponentList>
-        <ComponentList className="w-100" handleShow={handleShowEdit}></ComponentList>
-        <ComponentList className="w-100" handleShow={handleShowEdit}></ComponentList>
-        <ComponentList className="w-100" handleShow={handleShowEdit}></ComponentList>
+        { products.map((product) => {
+            const userDoc = doc(db,"Products",product.id)
+            return( 
+              <>
+            <ComponentList className="w-100" productName={product.productName} productPrice={product.productPrice} productCat={product.productCategory} productDes={product.productDesc} userDoc={userDoc} ></ComponentList>
+            </>)
+        })}
+      
 
 
         {/* Search Functionality */}
