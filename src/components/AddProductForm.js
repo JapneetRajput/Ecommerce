@@ -1,14 +1,7 @@
 import React, {useState} from 'react'
 import { Form, Button, Modal } from 'react-bootstrap';
 import { db } from '../firebase';
-import {
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
+import { collection,addDoc } from "firebase/firestore";
 
 function AddProductForm({show,handleClose}) {
   const [name,setName] = useState("");
@@ -19,13 +12,13 @@ function AddProductForm({show,handleClose}) {
   
   const collectionRef = collection(db, "Products");
 
-  const addProduct =  () => {
+  const addProduct =  async () => {
     try {
       // console.log(name);
       // console.log(price);
       // console.log(category);
       // console.log(description);
-     addDoc(collectionRef,
+     await addDoc(collectionRef,
       {productName: name, 
         productPrice: price,  
         productCategory: category,
@@ -68,7 +61,7 @@ function AddProductForm({show,handleClose}) {
             <Form.Label>Description</Form.Label>
             <Form.Control as="textarea" rows="3" name="Description" required onChange={e=> setDescription(e.target.value)}/>
           </Form.Group>
-          <Button onClick={addProduct} className="w-100 mb-4" type="submit">Add</Button>
+          <Button onClick={addProduct} className="w-100 mb-4">Add</Button>
         </Form></Modal.Body>
       </Modal>
     </>

@@ -49,15 +49,15 @@ function EditProductForm({show,handleClose,productName,productPrice,productDes,p
           <Form >
           <Form.Group className="mb-2" id="Name">
             <Form.Label >Name</Form.Label>
-            <Form.Control type="text" name="Name" required onChange={e=> setName(e.target.value)}></Form.Control>
+            <Form.Control type="text" name="Name" onChange={e=> setName(e.target.value)}></Form.Control>
           </Form.Group>
           <Form.Group className="mb-2" id="Price">
             <Form.Label >Price</Form.Label>
-            <Form.Control type="number" name="Price" required onChange={e=> setPrice(e.target.value)}></Form.Control>
+            <Form.Control type="number" name="Price" onChange={e=> setPrice(e.target.value)}></Form.Control>
           </Form.Group>
           <Form.Group className="mb-2" id="Category">
             <Form.Label >Category</Form.Label>
-            <Form.Control type="text" name="Category" required onChange={e=> setCategory(e.target.value)}></Form.Control>
+            <Form.Control type="text" name="Category" onChange={e=> setCategory(e.target.value)}></Form.Control>
           </Form.Group>
           {/* <Form.Group className="mb-4">
             <Form.Label>Product Image</Form.Label>
@@ -65,9 +65,9 @@ function EditProductForm({show,handleClose,productName,productPrice,productDes,p
           </Form.Group> */}
           <Form.Group className="mb-2">
             <Form.Label>Description</Form.Label>
-            <Form.Control as="textarea" rows="3" name="Description" required onChange={e=> setDescription(e.target.value)}/>
+            <Form.Control as="textarea" rows="3" name="Description" onChange={e=> setDescription(e.target.value)}/>
           </Form.Group>
-          <Button onClick={updateProduct} className="w-100 mb-4" type="submit">Edit</Button>
+          <Button onClick={updateProduct} className="w-100 mb-4">Edit</Button>
         </Form></Modal.Body>
       </Modal>
     </>
