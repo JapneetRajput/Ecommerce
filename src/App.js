@@ -15,10 +15,11 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route exact path="/product" element={<Product />} />
+        <Route exact path="/product/:category" element={<Product />} />
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/admin" element={<Admin />} />
         <Route exact path="/adminpanel" element={<AdminPanel />} />
-        <Route exact path="/individual-prod" element={<IndividualProd />} />
+        <Route exact path="/individual-prod/:id" element={<IndividualProd />} />
       </Routes>
     </>
   );

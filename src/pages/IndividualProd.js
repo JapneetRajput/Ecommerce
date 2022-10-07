@@ -1,8 +1,11 @@
 import React from "react";
+import { useParams } from "react-router-dom";
 
 export const IndividualProd = () => {
+  let { id } = useParams();
   return (
     <section className="py-5">
+      <span>{id}</span>
       <div className="container px-4 px-lg-5 my-5">
         <div className="row gx-4 gx-lg-5 align-items-center">
           <div className="col-md-6">
