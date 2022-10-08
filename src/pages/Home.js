@@ -12,8 +12,8 @@ export const Home = () => {
       <div className={`${styles.container} px-5 pt-5  `}>
         <h1 className="text-center">Shop by Category</h1>
         <Homecard />
-        <Admin />
-        <AdminPanel />
+        {/* <Admin />
+        <AdminPanel /> */}
       </div>
       <Footer />
     </div>
