@@ -38,7 +38,9 @@ export const Product = () => {
             <div className="col-md-6 col-lg-4 col-xl-3">
               <div id={styles.product_1} className={styles.single_product}>
                 <a href="individual-prod" className={styles.link}>
-                  <div className={styles.part_1}></div>
+                  <div className={styles.part_1}>
+                    <img className={styles.img}src={product.productImage}/>
+                  </div>
                   <div className={styles.part_2}>
                     <h3 className={styles.product_title}>{product.productName}</h3>
                     <h4 className={styles.product_price}>{product.productPrice}</h4>

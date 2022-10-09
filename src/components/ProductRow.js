@@ -2,23 +2,24 @@ import React, {useState} from 'react'
 import {ListGroup,Button} from 'react-bootstrap';
 import EditProductForm from './EditProductForm';
 // import Image from '../images/img_first.png';
-import {
-  collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
-  doc,
-} from "firebase/firestore";
+import {ref, deleteObject } from "firebase/storage";
+import {deleteDoc} from "firebase/firestore";
+import {storage} from '../firebase';
 
-function ProductRow({productName,productPrice,productCat,productDes,userDoc}) {
+function ProductRow({productName,productPrice,productCat,productDes,userDoc,productImg}) {
   const deleteUser = async () => {
+    deleteObject(desertRef).then(() => {
+    }).catch((error) => {
+      console.log(error);
+    });
+  
     await deleteDoc(userDoc);
   }
   const [showEdit, setShowEdit] = useState(false);
   const handleCloseEdit = () => setShowEdit(false);
   const handleShowEdit = () => setShowEdit(true);
 
+  const desertRef = ref(storage, `images/${productImg}`);
   
 
   return (
@@ -42,3 +43,5 @@ function ProductRow({productName,productPrice,productCat,productDes,userDoc}) {
 }
 
 export default ProductRow;
+
+
