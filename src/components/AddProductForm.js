@@ -15,11 +15,11 @@ function AddProductForm({show,handleClose}) {
   // console.log(name);
   
   const collectionRef = collection(db, "Products");
-  const fname = new Date().getTime + file.name;
-  const storageRef = ref(storage,`images/${fname}`);
+  const storageRef = ref(storage,`images/${file.name}`);
 
 
   const addImage =  async () => {
+    handleClose();
       const uploadTask = uploadBytesResumable(storageRef, file);
       uploadTask.on('state_changed', 
         (snapshot) => {
@@ -56,7 +56,8 @@ function AddProductForm({show,handleClose}) {
           productCategory: category,
           productDesc: description,
           timestamp: serverTimestamp(),
-          productImage: url});
+          productImage: url,
+          fileName: file.name});
      } catch (err) {
        alert(err)
      }

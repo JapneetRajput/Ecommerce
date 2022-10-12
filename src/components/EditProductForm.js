@@ -9,6 +9,7 @@ function EditProductForm({show,handleClose,productName,productPrice,productDes,p
   const [description,setDescription] = useState(productDes);
   const [category,setCategory] =useState(productCat);
   const updateProduct = async() => {
+    handleClose();
     const newFields = {productName: name, productPrice: price, productDesc: description, productCategory: category};
     await updateDoc(userDoc,newFields)
   }

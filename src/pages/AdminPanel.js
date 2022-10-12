@@ -51,7 +51,7 @@ function AdminPanel() {
               const userDoc = doc(db,"Products",product.id)
               return( 
                 <>
-              <ComponentList className="w-100" productName={product.productName} productPrice={product.productPrice} productCat={product.productCategory} productDes={product.productDesc} userDoc={userDoc} ></ComponentList>
+              <ComponentList className="w-100" productName={product.productName} productPrice={product.productPrice} productCat={product.productCategory} productDes={product.productDesc} userDoc={userDoc} fileName={product.fileName} ></ComponentList>
               </>)
           })}
         

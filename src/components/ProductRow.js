@@ -6,7 +6,7 @@ import {ref, deleteObject } from "firebase/storage";
 import {deleteDoc} from "firebase/firestore";
 import {storage} from '../firebase';
 
-function ProductRow({productName,productPrice,productCat,productDes,userDoc,productImg}) {
+function ProductRow({productName,productPrice,productCat,productDes,userDoc,productImg,fileName}) {
   const deleteUser = async () => {
     deleteObject(desertRef).then(() => {
     }).catch((error) => {
@@ -19,7 +19,7 @@ function ProductRow({productName,productPrice,productCat,productDes,userDoc,prod
   const handleCloseEdit = () => setShowEdit(false);
   const handleShowEdit = () => setShowEdit(true);
 
-  const desertRef = ref(storage, `images/${productImg}`);
+  const desertRef = ref(storage, `images/${fileName}`);
   
 
   return (
