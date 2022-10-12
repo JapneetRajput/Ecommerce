@@ -1,31 +1,49 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
+import {
+  doc,
+  getDoc,
+} from "firebase/firestore";
+import { db } from "../firebase";
+
 
 export const IndividualProd = () => {
+  const [product, setProduct] = useState({});
   let { id } = useParams();
+  useEffect(() => {
+  const read = async()=> {
+    const docRef = doc(db, "Products", id)
+    const docSnap = await getDoc(docRef)
+  
+    const data = docSnap.exists() ? docSnap.data() : null
+  
+    if (data === null || data === undefined) return null
+  
+    setProduct(data );
+  };
+  read();
+  }, []);
+  console.log(product);
+    // const snapshot = product.data;
   return (
     <section className="py-5">
-      <span>{id}</span>
       <div className="container px-4 px-lg-5 my-5">
         <div className="row gx-4 gx-lg-5 align-items-center">
           <div className="col-md-6">
             <img
               className="card-img-top mb-5 mb-md-0"
-              src="https://dummyimage.com/600x700/dee2e6/6c757d.jpg"
+              src={product.productImage}
               alt="..."
             />
           </div>
           <div className="col-md-6">
             {/* <div className="small mb-1">SKU: BST-498</div>  */}
-            <h1 className="display-5 fw-bolder">Speaker</h1>
+            <h1 className="display-5 fw-bolder">{product.productName}</h1>
             <div className="fs-5 mb-5">
-              <span>$40.00</span>
+              <span>${product.productPrice}</span> 
             </div>
             <p className="lead">
-              Lorem ipsum dolor sit amet consectetur adipisicing elit.
-              Praesentium at dolorem quidem modi. Nam sequi consequatur
-              obcaecati excepturi alias magni, accusamus eius blanditiis
-              delectus ipsam minima ea iste laborum vero?
+              {product.productDesc}
             </p>
             <div className="d-flex">
               {/* <input
@@ -49,3 +67,4 @@ export const IndividualProd = () => {
     </section>
   );
 };
+

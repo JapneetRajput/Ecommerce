@@ -31,7 +31,7 @@ function App() {
         <Route exact path="/cart" element={<Cart />} />
         <Route exact path="/admin" element={<Admin />}/>
         <Route exact path="/adminpanel" element={<AdminPanel />} />
-        <Route exact path="/individual-prod" element={<IndividualProd />} />
+        <Route exact path="/individual-prod/:id" element={<IndividualProd />} />
       </Routes>
     </>
   );
