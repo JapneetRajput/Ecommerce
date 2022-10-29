@@ -21,6 +21,8 @@ export const Product = () => {
 
     getProducts();
   }, []);
+
+  
   return (
     <div>
       <span>{category}</span>

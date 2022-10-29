@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams,Link } from "react-router-dom";
+
 import {
   doc,
   getDoc,
@@ -7,9 +8,17 @@ import {
 import { db } from "../firebase";
 
 
-export const IndividualProd = () => {
+export const IndividualProd = ({cart,handleAddToCart}) => {
   const [product, setProduct] = useState({});
+  const [quantity, setQuantity] = useState(1);
+  
   let { id } = useParams();
+
+  const handleQuantity = (e) => {
+    setQuantity(e.target.value);
+  }
+
+
   useEffect(() => {
   const read = async()=> {
     const docRef = doc(db, "Products", id)
@@ -19,11 +28,13 @@ export const IndividualProd = () => {
   
     if (data === null || data === undefined) return null
   
-    setProduct(data );
+    setProduct({...data,id} );
   };
+
   read();
   }, []);
-  console.log(product);
+
+
     // const snapshot = product.data;
   return (
     <section className="py-5">
@@ -46,20 +57,23 @@ export const IndividualProd = () => {
               {product.productDesc}
             </p>
             <div className="d-flex">
-              {/* <input
+              <input
                 className="form-control text-center me-3"
                 id="inputQuantity"
-                type="num"
-                value="1"
-                style="max-width: 3rem"
-              /> */}
-              <button
+                type="number"
+                value={quantity}
+                onChange={(e) => handleQuantity(e)}
+                style={{maxWidth:"4.5rem"}}
+                min="1"
+                // onKeyPress={e => e.key !== "-" ? "" : e.key}
+              />
+              <Link to={`/cart`}
                 className="btn btn-outline-dark flex-shrink-0"
-                type="button"
+                type="button" onClick={() => handleAddToCart(product,quantity)}
               >
                 <i className="bi-cart-fill me-1"></i>
                 Add to cart
-              </button>
+              </Link>
             </div>
           </div>
         </div>
