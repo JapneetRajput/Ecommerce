@@ -11,10 +11,12 @@ function AddProductForm({show,handleClose}) {
   const [description,setDescription] = useState("");
   const [category,setCategory] =useState("");
   const [file,setFile] = useState("");
+  const [value,setValue]=useState(false);
 
   // console.log(name);
   
   const collectionRef = collection(db, "Products");
+  const collRef = collection(db,'Categories');
   const storageRef = ref(storage,`images/${file.name}`);
 
 
@@ -58,6 +60,10 @@ function AddProductForm({show,handleClose}) {
           timestamp: serverTimestamp(),
           productImage: url,
           fileName: file.name});
+      if(value==true){
+        await addDoc(collRef,
+          {Name: category});
+      }
      } catch (err) {
        alert(err)
      }
@@ -85,6 +91,10 @@ function AddProductForm({show,handleClose}) {
           <Form.Group className="mb-2" id="Category">
             <Form.Label >Category</Form.Label>
             <Form.Control type="text" name="Category" required onChange={e=> setCategory(e.target.value)}></Form.Control>
+          </Form.Group>
+          <Form.Group className='mb-2' id="value">
+            <Form.Floating >New Category?</Form.Floating>
+            <Form.Check type="checkbox" name="checkbox" onChange={e=> setValue(!value)}></Form.Check>
           </Form.Group>
           <Form.Group className="mb-4">
             <Form.Label>Product Image</Form.Label>
