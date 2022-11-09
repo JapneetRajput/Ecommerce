@@ -6,11 +6,8 @@ import EditProductForm from '../components/EditProductForm';
 import { db } from '../firebase';
 import {
   collection,
-  getDocs,
-  addDoc,
-  updateDoc,
-  deleteDoc,
   doc,
+  onSnapshot,
 } from "firebase/firestore";
 import { auth } from '../firebase';
 
@@ -29,13 +26,14 @@ function AdminPanel() {
   const collectionRef = collection(db, "Products");
   
   useEffect(() => {
-    const getProducts = async () => {
-      const data = await getDocs(collectionRef);
-      setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-
-    getProducts();
+      const unsubscribe = onSnapshot(collectionRef, (snapshot) => { 
+        setProducts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+      });
+    return ()=>{
+      unsubscribe();
+    }
   }, []);
+  
   if(user){
     return (
         <Container className="d-flex align-items-center pt-5          justify-content-start flex-column" style={{minHeight:"500px",maxWidth: "700px"}}>

@@ -55,7 +55,7 @@ function AddProductForm({show,handleClose}) {
       await addDoc(collectionRef,
         {productName: name, 
           productPrice: price,  
-          productCategory: category,
+          productCategory: category.toLowerCase(),
           productDesc: description,
           timestamp: serverTimestamp(),
           productImage: url,

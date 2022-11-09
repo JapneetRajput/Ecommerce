@@ -2,19 +2,19 @@ import React, { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import styles from "./css/homecard.module.css";
 import { db } from "../firebase";
-import { collection, getDocs, doc } from "firebase/firestore";
+import { collection,onSnapshot, doc } from "firebase/firestore";
 
 export default function Homecard() {
   const [categories, setCategories] = useState([]);
   const collectionRef = collection(db, "Categories");
   useEffect(() => {
-    const getCategories = async () => {
-      const data = await getDocs(collectionRef);
-      setCategories(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-
-    getCategories();
-  }, []);
+    const unsubscribe = onSnapshot(collectionRef, (snapshot) => { 
+      setCategories(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+  return ()=>{
+    unsubscribe();
+  }
+}, []);
 
   return (
     <div className="row pt-3">

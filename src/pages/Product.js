@@ -7,19 +7,20 @@ import { Link } from "react-router-dom";
 import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase";
-import { collection, getDocs, doc } from "firebase/firestore";
+import { collection, onSnapshot, doc } from "firebase/firestore";
 
 export const Product = () => {
   let { category } = useParams();
   const [products, setProducts] = useState([]);
   const collectionRef = collection(db, "Products");
+  
   useEffect(() => {
-    const getProducts = async () => {
-      const data = await getDocs(collectionRef);
-      setProducts(data.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
-    };
-
-    getProducts();
+    const unsubscribe = onSnapshot(collectionRef, (snapshot) => { 
+      setProducts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
+    });
+    return ()=>{
+      unsubscribe();
+    }
   }, []);
 
   
