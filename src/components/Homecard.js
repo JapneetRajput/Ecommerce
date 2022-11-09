@@ -5,7 +5,6 @@ import { db } from "../firebase";
 import { collection, getDocs, doc } from "firebase/firestore";
 
 export default function Homecard() {
-  
   const [categories, setCategories] = useState([]);
   const collectionRef = collection(db, "Categories");
   useEffect(() => {
@@ -16,17 +15,19 @@ export default function Homecard() {
 
     getCategories();
   }, []);
-  
+
   return (
     <div className="row pt-3">
       {categories.map((category) => {
         const userDoc = doc(db, "Categories", category.id);
         return (
           <div className="col-sm-3">
-            <Link to={`/product/speakers`}>
+            <Link to={`/product/${category.Name}`}>
               <div className={`${styles.card} card my-3  `}>
                 <div className="card-body  text-center">
-                  <h3 className="card-title text-center py-5">{category.Name}</h3>
+                  <h3 className="card-title text-center py-5">
+                    {category.Name}
+                  </h3>
                   <a href="#" className="btn btn-primary  ">
                     See now
                   </a>
@@ -34,8 +35,8 @@ export default function Homecard() {
               </div>
             </Link>
           </div>
-          );
-        })}
+        );
+      })}
     </div>
   );
 }
