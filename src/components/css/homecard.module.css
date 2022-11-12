@@ -1,5 +1,13 @@
 .card:hover{
-    background-color: rgb(31, 30, 30);
-    color: white;
+    background-color: #8D72E1;  
+}
+
+.card{
+    text-decoration: none;
+    color: black;
+}
+
+.btn_color{
+    background-color: #8D9EFF;
     
 }

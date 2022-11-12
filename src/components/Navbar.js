@@ -2,6 +2,7 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 import styles from "./css/nav.module.css";
+import SureshLogo from "../images/SureshLogo.png";
 
 export const Navbar = (props) => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
@@ -9,8 +10,8 @@ export const Navbar = (props) => {
 
   return (
     <nav
-      className="navbar navbar-light navbar-expand-lg py-3 h4"
-      style={{ backgroundColor: "black" }}
+      className="navbar navbar-dark navbar-expand-lg py-3 px-2 h4"
+      style={{ backgroundColor: "#3F3B6C" }}
     >
       <Link className="navbar-brand  font-weight-bolder mx-5" to="./">
         {/* <img src={Logo} alt="Logo" width="135" height="42" className="vertical-align-middle" /> */}
@@ -18,11 +19,11 @@ export const Navbar = (props) => {
           className={`${styles.navlink} nav-link `}
           style={{ color: "white", fontSize: "1.7rem" }}
         >
-          Portronics
+          <img src={SureshLogo} width="150"></img>
         </a>
       </Link>
       <button
-        className="custom-toggler navbar-toggler"
+        className="custom-toggler navbar-toggler "
         type="button"
         data-toggle="collapse"
         data-target="#navbarsExample09"
@@ -30,9 +31,9 @@ export const Navbar = (props) => {
         aria-expanded={!isNavCollapsed ? true : false}
         aria-label="Toggle navigation"
         onClick={handleNavCollapse}
-        style={{ color: "white" }}
+        // style={{ color: "white" }}
       >
-        <span className="navbar-toggler-icon"></span>
+        <span className="navbar-toggler-icon "></span>
       </button>
 
       <div
