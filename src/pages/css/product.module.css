@@ -139,7 +139,8 @@
 }
 
 .section_products .single_product .part_2 .product_title {
-    font-size: 1rem;
+    font-size: 1.3rem;
+    text-decoration: none;
 }
 
 .section_products .single_product .part_2 h4 {

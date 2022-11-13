@@ -30,7 +30,7 @@ export default function Homecard() {
                   <h3 className="card-title text-center py-5">
                     {category.Name}
                   </h3>
-                  <a href="#" className={`btn  ${styles.btn_color} `}>
+                  <a href="#" className={`btn ${styles.btn_color} `}>
                     See now
                   </a>
                 </div>
