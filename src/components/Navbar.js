@@ -39,7 +39,7 @@ export const Navbar = (props) => {
       <div
         className={`${
           isNavCollapsed ? "collapse justify-content-end" : ""
-        } navbar-collapse`}
+        } navbar-collapse text-end`}
         id="navbarsExample09"
       >
         <Link

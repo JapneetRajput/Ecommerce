@@ -13,22 +13,21 @@ export const Product = () => {
   let { category } = useParams();
   const [products, setProducts] = useState([]);
   const collectionRef = collection(db, "Products");
-  
+
   useEffect(() => {
-    const unsubscribe = onSnapshot(collectionRef, (snapshot) => { 
+    const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
       setProducts(snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id })));
     });
-    return ()=>{
+    return () => {
       unsubscribe();
-    }
+    };
   }, []);
 
-  
   return (
     <div>
       <span>{category}</span>
       <section className={styles.section_products}>
-        <div className="container">
+        <div className="container text-center">
           <div className="row justify-content-center text-center">
             <div className="col-md-8 col-lg-6">
               <div className="header">
@@ -45,15 +44,18 @@ export const Product = () => {
                   <div id={styles.product_1} className={styles.single_product}>
                     <Link to={`/individual-prod/${product.id}`}>
                       <a href="#" className={styles.link}>
-                      <div className={styles.part_1}>
-                        <img className={styles.img}src={product.productImage}/>
-                      </div>
+                        <div className={styles.part_1}>
+                          <img
+                            className={styles.img}
+                            src={product.productImage}
+                          />
+                        </div>
                         <div className={styles.part_2}>
                           <h3 className={styles.product_title}>
                             {product.productName}
                           </h3>
                           <h4 className={styles.product_price}>
-                            {product.productPrice}
+                            ₹{product.productPrice}
                           </h4>
                         </div>
                       </a>
