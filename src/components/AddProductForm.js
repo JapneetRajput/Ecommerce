@@ -1,9 +1,8 @@
-import React, {useState} from 'react'
+import React, {useState,useEffect} from 'react'
 import { Form, Button, Modal } from 'react-bootstrap';
 import { db,storage } from '../firebase';
-import { collection,addDoc, serverTimestamp,} from "firebase/firestore";
+import { collection,addDoc, serverTimestamp,doc,onSnapshot} from "firebase/firestore";
 import {ref, uploadBytesResumable, getDownloadURL} from "firebase/storage"
-import { useNavigate } from 'react-router-dom';
 
 function AddProductForm({show,handleClose}) {
   const [name,setName] = useState("");
@@ -11,13 +10,25 @@ function AddProductForm({show,handleClose}) {
   const [description,setDescription] = useState("");
   const [category,setCategory] =useState("");
   const [file,setFile] = useState("");
-  const [value,setValue]=useState(false);
   const [input, setInput] = useState(false)
   // console.log(name);
   
   const collectionRef = collection(db, "Products");
   const collRef = collection(db,'Categories');
   const storageRef = ref(storage,`images/${file.name}`);
+
+  const [categories, setCategories] = useState([]);
+  useEffect(() => {
+    const unsubscribe = onSnapshot(collRef, (snapshot) => {
+      setCategories(
+        snapshot.docs.map((doc) => ({ ...doc.data(), id: doc.id }))
+      );
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
 
   const handleChange = event => {
     if (event.target.checked) {
@@ -27,6 +38,7 @@ function AddProductForm({show,handleClose}) {
     }
     setInput(current => !current);
   };
+
   const addImage =  async () => {
     handleClose();
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -62,12 +74,12 @@ function AddProductForm({show,handleClose}) {
       await addDoc(collectionRef,
         {productName: name, 
           productPrice: price,  
-          productCategory: category.toLowerCase(),
+          productCategory: category,
           productDesc: description,
           timestamp: serverTimestamp(),
           productImage: url,
           fileName: file.name});
-      if(value==true){
+      if(input==true){
         await addDoc(collRef,
           {Name: category});
       }
@@ -95,21 +107,25 @@ function AddProductForm({show,handleClose}) {
             <Form.Label >Price</Form.Label>
             <Form.Control type="number" name="Price" required onChange={e=> setPrice(e.target.value)}></Form.Control>
           </Form.Group>
-          <Form.Group className="mb-2" id="Category">
+          
+          {!input && <Form.Group className="mb-2" id="Category">
             <Form.Label >Category</Form.Label>
-            <select class="form-select" aria-label="Default select example">
-            <option selected>Open this select menu</option>
-            <option value="1">One</option>
-            <option value="2">Two</option>
-            <option value="3">Three</option>
-          </select>
-          </Form.Group>
+            <select class="form-select" aria-label="Default select example" name="CategoryInput" required onChange={e=> setCategory(e.target.value)}>
+            {categories.map((category) => {
+            const userDoc = doc(db, "Categories", category.id);
+            return (
+            
+            <option value= {category.Name} >{category.Name}</option>
+            
+            )})}
+            </select>
+          </Form.Group>}
           <Form.Group className='mb-2' id="value">
             <Form.Floating >New Category?</Form.Floating>
-            <Form.Check type="checkbox" name="checkbox"onChange={handleChange}></Form.Check>
+            <Form.Check type="checkbox" name="checkbox" onChange={handleChange}></Form.Check>
           </Form.Group>
           {input && <Form.Group className="mb-2" id="CategoryInput">
-            <Form.Label ></Form.Label>
+            <Form.Label >New Category Name</Form.Label>
             <Form.Control type="text" name="CategoryInput" required onChange={e=> setCategory(e.target.value)}></Form.Control>
           </Form.Group>}
           <Form.Group className="mb-4">
