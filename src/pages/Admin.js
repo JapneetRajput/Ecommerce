@@ -32,7 +32,7 @@ function Admin() {
 
   const userr= auth.currentUser;
 
-  if(!userr){
+  if(userr){
     navigate('../adminpanel')
   }
 
