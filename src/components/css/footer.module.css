@@ -1,0 +1,28 @@
+.text_cust_center{
+    text-align: center;
+}
+
+.text_cust_start{
+    text-align: start;
+}
+
+.text_cust_end{
+    text-align: end;
+}
+
+.bg{
+    background-color: #3F3B6C;
+}
+
+@media screen and (max-width: 426px) {
+    .text_cust_center{
+        text-align: center;
+    }
+    .text_cust_start{
+        text-align: center;
+    }
+    .text_cust_end{
+        text-align: center;
+    }
+}
+    

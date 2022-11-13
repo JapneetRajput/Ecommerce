@@ -33,8 +33,8 @@ export const IndividualProd = ({cart,handleAddToCart}) => {
 
   read();
   }, []);
-
-
+  // const split=product.productDesc.split(".")
+  // console.log(split)
     // const snapshot = product.data;
   return (
     <section className="py-5">
@@ -53,9 +53,13 @@ export const IndividualProd = ({cart,handleAddToCart}) => {
             <div className="fs-5 mb-5">
               <span>${product.productPrice}</span> 
             </div>
-            <p className="lead">
-              {product.productDesc}
+            <h5>Product Description</h5>
+            <ul><p className="lead">
+              {product.productDesc && product.productDesc.split(".").map((item)=>(
+                <li>{item}</li>
+              ))}
             </p>
+            </ul>
             <div className="d-flex">
               <input
                 className="form-control text-center me-3"

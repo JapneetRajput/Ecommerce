@@ -12,14 +12,21 @@ function AddProductForm({show,handleClose}) {
   const [category,setCategory] =useState("");
   const [file,setFile] = useState("");
   const [value,setValue]=useState(false);
-
+  const [input, setInput] = useState(false)
   // console.log(name);
   
   const collectionRef = collection(db, "Products");
   const collRef = collection(db,'Categories');
   const storageRef = ref(storage,`images/${file.name}`);
 
-
+  const handleChange = event => {
+    if (event.target.checked) {
+      console.log('✅ Checkbox is checked');
+    } else {
+      console.log('⛔️ Checkbox is NOT checked');
+    }
+    setInput(current => !current);
+  };
   const addImage =  async () => {
     handleClose();
       const uploadTask = uploadBytesResumable(storageRef, file);
@@ -69,7 +76,7 @@ function AddProductForm({show,handleClose}) {
      }
     }
 
-
+  
   return (
    
   
@@ -90,12 +97,21 @@ function AddProductForm({show,handleClose}) {
           </Form.Group>
           <Form.Group className="mb-2" id="Category">
             <Form.Label >Category</Form.Label>
-            <Form.Control type="text" name="Category" required onChange={e=> setCategory(e.target.value)}></Form.Control>
+            <select class="form-select" aria-label="Default select example">
+            <option selected>Open this select menu</option>
+            <option value="1">One</option>
+            <option value="2">Two</option>
+            <option value="3">Three</option>
+          </select>
           </Form.Group>
           <Form.Group className='mb-2' id="value">
             <Form.Floating >New Category?</Form.Floating>
-            <Form.Check type="checkbox" name="checkbox" onChange={e=> setValue(!value)}></Form.Check>
+            <Form.Check type="checkbox" name="checkbox"onChange={handleChange}></Form.Check>
           </Form.Group>
+          {input && <Form.Group className="mb-2" id="CategoryInput">
+            <Form.Label ></Form.Label>
+            <Form.Control type="text" name="CategoryInput" required onChange={e=> setCategory(e.target.value)}></Form.Control>
+          </Form.Group>}
           <Form.Group className="mb-4">
             <Form.Label>Product Image</Form.Label>
             <Form.Control type="file" name="File" required onChange={(e) => setFile(e.target.files[0])}/>
