@@ -51,7 +51,7 @@ export const IndividualProd = ({cart,handleAddToCart}) => {
             {/* <div className="small mb-1">SKU: BST-498</div>  */}
             <h1 className="display-5 fw-bolder">{product.productName}</h1>
             <div className="fs-5 mb-5">
-              <span>${product.productPrice}</span> 
+              <span>₹{product.productPrice}</span> 
             </div>
             <h5>Product Description</h5>
             <ul><p className="lead">
