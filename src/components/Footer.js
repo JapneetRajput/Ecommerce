@@ -1,6 +1,6 @@
 import React from "react";
 import styles from "./css/footer.module.css";
-import SureshLogo from "../images/SureshLogo.png";
+import SureshLogo from "../images/SureshLogoNew.png";
 
 export default function Footer() {
   return (
@@ -8,12 +8,20 @@ export default function Footer() {
       className={`page-footer font-small ${styles.bg}   mt-4 py-4 px-5 text-white  `}
     >
       <div className="px-2 row row-cols-1 row-cols-sm-3 row-cols-md-3 justify-content-center">
-        <div className={`${styles.text_cust_start} col `}>
-          <img src={SureshLogo} width="100" />
+        <div className={`${styles.text_cust_start} col my-auto`}>
+          <img src={SureshLogo} height="50" />
         </div>
-        <div className={`${styles.text_cust_center} col mt-3`}>Address</div>
-        <div className={`${styles.text_cust_end} col mt-3`}>
-          <a href="#">
+        <div className={`${styles.text_cust_center} col my-auto`}>
+          ADDRESS:
+          <br /> 390E, LAMINGTON ROAD,
+          <br /> LAXMI BUILDING COMPOUND,
+          <br /> GROUND FLOOR, SHOP NO. 3,
+          <br /> OPP. SWASTIK CINEMA,
+          <br /> GRANT ROAD-EAST,
+          <br /> MUMBAI - 400007
+        </div>
+        <div className={`${styles.text_cust_end} col my-auto`}>
+          <a href="https://www.instagram.com/suresh.computers/">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
