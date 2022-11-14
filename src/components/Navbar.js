@@ -2,7 +2,7 @@ import React, { useState } from "react";
 
 import { Link } from "react-router-dom";
 import styles from "./css/nav.module.css";
-import SureshLogo from "../images/SureshLogo.png";
+import SureshLogo from "../images/SureshLogoNew.png";
 
 export const Navbar = (props) => {
   const [isNavCollapsed, setIsNavCollapsed] = useState(true);
@@ -11,7 +11,7 @@ export const Navbar = (props) => {
   return (
     <nav
       className="navbar navbar-dark navbar-expand-lg py-3 px-2 h4"
-      style={{ backgroundColor: "#3F3B6C" }}
+      style={{ backgroundColor: "#2A2D62" }}
     >
       <Link className="navbar-brand  font-weight-bolder mx-5" to="./">
         {/* <img src={Logo} alt="Logo" width="135" height="42" className="vertical-align-middle" /> */}
