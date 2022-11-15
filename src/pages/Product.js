@@ -8,11 +8,13 @@ import Footer from "../components/Footer";
 import { useParams } from "react-router-dom";
 import { db } from "../firebase";
 import { collection, onSnapshot, doc } from "firebase/firestore";
+import {Form} from 'react-bootstrap'
 
 export const Product = () => {
   let { category } = useParams();
   const [products, setProducts] = useState([]);
   const collectionRef = collection(db, "Products");
+  const [searchTerm,setSearchTerm] = useState("");
 
   useEffect(() => {
     const unsubscribe = onSnapshot(collectionRef, (snapshot) => {
@@ -36,8 +38,17 @@ export const Product = () => {
               </div>
             </div>
           </div>
+          <Form.Group className="mb-4 mt-4 w-100" id="Name">
+              <Form.Control type="text" required onChange={e=> setSearchTerm(e.target.value)} placeholder="Search for Product Name" className="py-2"></Form.Control>
+            </Form.Group>
           <div className="row">
-            {products.map((product) => {
+            {products.filter(product => {
+            if(searchTerm === "") {
+              return product;
+            } else if(product.productName.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return product;
+            }
+          }).map((product) => {
               const userDoc = doc(db, "Products", product.id);
               return (
                 <div className="col-md-6 col-lg-4 col-xl-3">

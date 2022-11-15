@@ -45,26 +45,19 @@ function AdminPanel() {
               <Form.Control type="text" required onChange={e=> setSearchTerm(e.target.value)} placeholder="Search for Product Name"></Form.Control>
             </Form.Group>
           <AddProductForm show={showAdd} handleClose={handleCloseAdd}></AddProductForm>
-          { products.map((product) => {
+          {products.filter(product => {
+            if(searchTerm === "") {
+              return product;
+            } else if(product.productName.toLowerCase().includes(searchTerm.toLowerCase())) {
+              return product;
+            }
+          }).map((product) => {
               const userDoc = doc(db,"Products",product.id)
               return( 
                 <>
               <ComponentList className="w-100" productName={product.productName} productPrice={product.productPrice} productCat={product.productCategory} productDes={product.productDesc} userDoc={userDoc} fileName={product.fileName} ></ComponentList>
               </>)
           })}
-        
-  
-  
-          {/* Search Functionality */}
-          {/* {products.filter(product => {
-            if(searchTerm === "") {
-              return product;
-            } else if(product.name.toLowerCase().include(searchTerm.toLowerCase())) {
-              return product;
-            }
-          }).map(product => <ComponentList className="w-100" handleShow={handleShowEdit}></ComponentList>)} */}
-  
-  
       </Container>
     )
   }
